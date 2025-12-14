@@ -2,27 +2,26 @@ import { IncomingHttpHeaders } from "http";
 import { describe, expect, test } from "vitest";
 import { getAPIKey } from "../api/auth";
 
-const emptyHeader : IncomingHttpHeaders = {
+const emptyHeader: IncomingHttpHeaders = {};
+
+const multiStringHeader: IncomingHttpHeaders = {
+  authorization: "hey aasda apikey 113322",
 };
 
-const multiStringHeader : IncomingHttpHeaders = {
-    'authorization': 'hey aasda apikey 113322'
+const singleStringHeader: IncomingHttpHeaders = {
+  authorization: "ApiKey",
 };
 
-const singleStringHeader : IncomingHttpHeaders = {
-    'authorization': 'ApiKey'
+const noAPIStringHeader: IncomingHttpHeaders = {
+  authorization: "Api abcdefg",
 };
 
-const noAPIStringHeader : IncomingHttpHeaders = {
-    'authorization': 'Api abcdefg'
+const invalidCaseHeader: IncomingHttpHeaders = {
+  authorization: "Apikey abcdefg",
 };
 
-const invalidCaseHeader : IncomingHttpHeaders = {
-    'authorization': 'Apikey abcdefg'
-};
-
-const goodHeader : IncomingHttpHeaders = {
-    'authorization': 'ApiKey abcdefg',
+const goodHeader: IncomingHttpHeaders = {
+  authorization: "ApiKey abcdefg",
 };
 
 describe("getAPIKey", () => {
